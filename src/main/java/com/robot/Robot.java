@@ -5,6 +5,8 @@ public interface Robot {
     int x = -1;
     int y = -1;
 
+    boolean place();
+
     boolean move();
 
     boolean report();
