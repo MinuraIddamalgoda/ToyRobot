@@ -14,6 +14,8 @@ public class InputArgParserService {
     private Options options;
     private Option inputFilePathOption;
 
+    String filePath;
+
     String[] args;
 
     public InputArgParserService(String[] args) {
@@ -29,29 +31,34 @@ public class InputArgParserService {
     }
 
     public String getInputPath() throws ParseException, FileNotFoundException {
+        if (!hasValidInputArgs()) {
+            throw new ParseException("Invalid invocation arguments.");
+        }
+
+        if (!isValidPath(filePath)) {
+            throw new FileNotFoundException("Cannot read file.");
+        }
+
+        return filePath;
+    }
+
+    public boolean hasValidInputArgs() {
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
         CommandLine commandLine;
-        String filePath = "";
 
         try {
             commandLine = parser.parse(options, args);
             filePath = commandLine.getOptionValue(INPUT_OPT_SHORT);
+            return true;
         } catch (ParseException e) {
             System.err.println(e.getMessage());
             formatter.printHelp("ToyRobot.jar -i <arg>", options);
-
-            throw new ParseException("Invalid invocation arguments.");
+            return false;
         }
-
-        if (isValidPath(filePath)) {
-            return filePath;
-        }
-
-        throw new FileNotFoundException("Cannot read file.");
     }
 
-    private boolean isValidPath(String path) {
+    public boolean isValidPath(String path) {
         File f = new File(path);
 
         return f.exists() && !f.isDirectory() && f.canRead();
