@@ -10,7 +10,7 @@ repositories {
 
 dependencies {
     implementation 'com.google.guava:guava:28.1-jre'
-    compile group: 'commons-cli', name: 'commons-cli', version: '1.3.1'
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.3.1'
 
 
     testImplementation 'junit:junit:4.12'
@@ -25,5 +25,9 @@ jar {
         attributes(
                 'Main-Class': 'com.ToyRobot.App'
         )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
