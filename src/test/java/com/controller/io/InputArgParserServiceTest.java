@@ -1,6 +1,5 @@
-package com.ToyRobot.controller.io;
+package com.controller.io;
 
-import com.controller.io.InputArgParserService;
 import org.apache.commons.cli.ParseException;
 import org.junit.Test;
 
@@ -13,7 +12,7 @@ public class InputArgParserServiceTest {
         String[] validArgs = {"-i ./ToyRobot.jar"};
         InputArgParserService parserService = new InputArgParserService(validArgs);
 
-        parserService.getInputPath();
+        parserService.getInputFile();
     }
 
     @Test(expected = ParseException.class)
@@ -21,6 +20,6 @@ public class InputArgParserServiceTest {
         String[] invalidArgs = {"FOOBAR"};
         InputArgParserService parserService = new InputArgParserService(invalidArgs);
 
-        parserService.getInputPath();
+        parserService.getInputFile();
     }
 }

@@ -1,4 +1,4 @@
-package com.robot;
+package com.model.robot;
 
 public interface Robot {
     Direction direction = null;
