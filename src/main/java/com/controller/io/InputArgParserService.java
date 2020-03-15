@@ -30,7 +30,7 @@ public class InputArgParserService {
         this.options.addOption(inputFilePathOption);
     }
 
-    public String getInputPath() throws ParseException, FileNotFoundException {
+    public File getInputFile() throws ParseException, FileNotFoundException {
         if (!hasValidInputArgs()) {
             throw new ParseException("Invalid invocation arguments.");
         }
@@ -39,7 +39,7 @@ public class InputArgParserService {
             throw new FileNotFoundException("Cannot read file.");
         }
 
-        return filePath;
+        return new File(filePath);
     }
 
     public boolean hasValidInputArgs() {
