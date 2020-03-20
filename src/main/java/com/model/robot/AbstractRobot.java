@@ -1,6 +1,7 @@
 package com.model.robot;
 
 import com.controller.LocationService;
+import com.model.command.AbstractCommand;
 import com.model.command.PlaceCommand;
 
 public class AbstractRobot {
@@ -29,5 +30,9 @@ public class AbstractRobot {
 
     public boolean move() {
         return this.locationService.performValidMove();
+    }
+
+    public void changeDirection(AbstractCommand newDirection) {
+        this.locationService.changeDirection(newDirection);
     }
 }
