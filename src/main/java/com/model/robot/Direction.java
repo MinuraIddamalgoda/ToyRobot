@@ -4,5 +4,35 @@ public enum Direction {
     NORTH,
     EAST,
     WEST,
-    SOUTH
+    SOUTH;
+
+    public Direction changeLeft() {
+        switch (this) {
+            case NORTH:
+                return WEST;
+            case EAST:
+                return NORTH;
+            case WEST:
+                return SOUTH;
+            case SOUTH:
+                return EAST;
+            default:
+                return null;
+        }
+    }
+
+    public Direction changeRight() {
+        switch (this) {
+            case NORTH:
+                return EAST;
+            case EAST:
+                return SOUTH;
+            case WEST:
+                return NORTH;
+            case SOUTH:
+                return WEST;
+            default:
+                return null;
+        }
+    }
 }

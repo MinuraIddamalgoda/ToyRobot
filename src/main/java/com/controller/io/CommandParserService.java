@@ -2,10 +2,7 @@ package com.controller.io;
 
 import com.controller.io.validator.PlaceCommandValidatorService;
 import com.controller.io.validator.StringInputValidatorService;
-import com.model.command.Command;
-import com.model.command.MoveCommand;
-import com.model.command.PlaceCommand;
-import com.model.command.ReportCommand;
+import com.model.command.*;
 import com.model.exception.PlacementException;
 
 import java.io.File;
@@ -46,6 +43,8 @@ public class CommandParserService {
                 commandList.add(new MoveCommand());
             } else if (line.startsWith(REPORT_COMMAND)) {
                 commandList.add(new ReportCommand());
+            } else {
+                commandList.add(new ChangeDirectionCommand());
             }
         }
 
