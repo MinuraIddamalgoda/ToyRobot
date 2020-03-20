@@ -33,9 +33,8 @@ public class StringInputValidatorService {
     boolean isValidReportInput() {
         return validReportInputPattern.matcher(input).matches();
     }
-
+  
     boolean isValidChangeDirectionInput() {
         return validChangeDirectionInputPattern.matcher(input).matches();
     }
-
 }
