@@ -29,8 +29,8 @@ public class CommandParserService {
         this.inputValidator = new StringInputValidatorService();
     }
 
-    public List<Command> getCommands() {
-        List<Command> commandList = new ArrayList<>();
+    public List<AbstractCommand> getCommands() {
+        List<AbstractCommand> commandList = new ArrayList<>();
 
         for (String line : getFileContents()) {
             if (line.startsWith(PLACE_COMMAND_START)) {
@@ -44,18 +44,26 @@ public class CommandParserService {
             } else if (line.startsWith(REPORT_COMMAND)) {
                 commandList.add(new ReportCommand());
             } else {
-                commandList.add(new ChangeDirectionCommand());
+                commandList.add(getChangeDirectionCommand(line));
             }
         }
 
         return ignoreUnplacedCommands(commandList);
     }
 
-    List<Command> ignoreUnplacedCommands(List<Command> commandList) {
-        List<Command> validCommandList = new ArrayList<>(commandList.size());
+    AbstractCommand getChangeDirectionCommand(String input) {
+        if (input.equals("LEFT")) {
+            return new ChangeLeftCommand();
+        }
+
+        return new ChangeRightCommand();
+    }
+
+    List<AbstractCommand> ignoreUnplacedCommands(List<AbstractCommand> commandList) {
+        List<AbstractCommand> validCommandList = new ArrayList<>(commandList.size());
         boolean robotHasBeenPlaced = false;
 
-        for (Command command : commandList) {
+        for (AbstractCommand command : commandList) {
             if (command instanceof PlaceCommand) {
                 robotHasBeenPlaced = true;
             }
