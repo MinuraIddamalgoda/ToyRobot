@@ -1,7 +1,7 @@
 package com.ToyRobot;
 
-import com.controller.io.CommandParserService;
-import com.controller.io.InputArgParserService;
+import com.controller.io.parser.CommandParserService;
+import com.controller.io.parser.InputArgParserService;
 import com.model.command.Command;
 import org.apache.commons.cli.ParseException;
 

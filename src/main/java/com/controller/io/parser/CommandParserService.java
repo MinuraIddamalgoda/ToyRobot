@@ -1,4 +1,4 @@
-package com.controller.io;
+package com.controller.io.parser;
 
 import com.controller.io.validator.PlaceCommandValidatorService;
 import com.controller.io.validator.StringInputValidatorService;

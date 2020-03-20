@@ -1,5 +1,6 @@
-package com.controller.io;
+package com.controller.io.parser;
 
+import com.controller.io.parser.InputArgParserService;
 import org.apache.commons.cli.ParseException;
 import org.junit.Test;
 

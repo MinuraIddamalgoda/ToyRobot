@@ -1,5 +1,6 @@
-package com.controller.io;
+package com.controller.io.parser;
 
+import com.controller.io.parser.CommandParserService;
 import com.model.command.Command;
 import com.model.command.MoveCommand;
 import com.model.command.PlaceCommand;
