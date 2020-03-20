@@ -2,7 +2,10 @@ package com.ToyRobot;
 
 import com.controller.io.parser.CommandParserService;
 import com.controller.io.parser.InputArgParserService;
-import com.model.command.Command;
+import com.model.command.AbstractCommand;
+import com.model.exception.InvalidCommand;
+import com.model.robot.AbstractRobot;
+import com.model.robot.RobotFactory;
 import org.apache.commons.cli.ParseException;
 
 import java.io.File;
@@ -26,10 +29,13 @@ public class App {
         System.out.println(filePath);
 
         CommandParserService commandParserService = new CommandParserService(filePath);
-        List<Command> commandList = commandParserService.getCommands();
+        List<AbstractCommand> commandList = commandParserService.getCommands();
 
-        for (Command command: commandList) {
-            System.out.println(command.toString());
+        try {
+            AbstractRobot toyRobot = RobotFactory.getRobot(commandList.get(0));
+            System.out.println(toyRobot.report());
+        } catch (InvalidCommand invalidCommand) {
+            invalidCommand.printStackTrace();
         }
     }
 }
