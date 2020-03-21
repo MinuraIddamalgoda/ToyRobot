@@ -20,12 +20,12 @@ public class AbstractRobot {
         );
     }
 
-    public String report() {
-        return String.format("%d,%d,%s",
+    public void report() {
+        System.out.println(String.format("%d,%d,%s",
                 locationService.getCurrentX(),
                 locationService.getCurrentY(),
                 locationService.getCurrentDirection().toString()
-        );
+        ));
     }
 
     public boolean move() {
