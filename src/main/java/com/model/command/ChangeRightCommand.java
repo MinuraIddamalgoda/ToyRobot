@@ -1,6 +1,6 @@
 package com.model.command;
 
-public class ChangeRightCommand extends AbstractCommand {
+public class ChangeRightCommand extends ChangeDirectionCommand {
 
     @Override
     public String toString() {
