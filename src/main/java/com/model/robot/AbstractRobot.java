@@ -20,16 +20,18 @@ public class AbstractRobot {
         );
     }
 
-    public void report() {
-        System.out.println(String.format("%d,%d,%s",
+    public String report() {
+        return String.format("%d,%d,%s",
                 locationService.getCurrentX(),
                 locationService.getCurrentY(),
                 locationService.getCurrentDirection().toString()
-        ));
+        );
     }
 
-    public boolean move() {
-        return this.locationService.performValidMove();
+    public void performValidMove() {
+        if (!this.locationService.performValidMove()) {
+//            System.err.println("Invalid move command given");
+        }
     }
 
     public void changeDirection(AbstractCommand newDirection) {
