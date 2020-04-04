@@ -2,6 +2,7 @@ package com.controller;
 
 import com.model.command.AbstractCommand;
 import com.model.command.ChangeLeftCommand;
+import com.model.command.PlaceCommand;
 import com.model.robot.Direction;
 
 import static com.lib.BoardConfig.BOARD_HEIGHT;
@@ -19,6 +20,12 @@ public class LocationService {
         this.currentX = currentX;
         this.currentY = currentY;
         this.currentDirection = currentDirection;
+    }
+
+    public LocationService(PlaceCommand placeCommand) {
+        this.currentX = placeCommand.getX();
+        this.currentY = placeCommand.getY();
+        this.currentDirection = placeCommand.getDirection();
     }
 
     public Direction changeDirection(AbstractCommand changeDirectionCommand) {

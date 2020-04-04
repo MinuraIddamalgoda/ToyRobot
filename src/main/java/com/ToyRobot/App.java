@@ -1,5 +1,6 @@
 package com.ToyRobot;
 
+import com.controller.LocationService;
 import com.controller.io.parser.CommandParserService;
 import com.controller.io.parser.InputArgParserService;
 import com.model.command.*;
@@ -28,7 +29,10 @@ public class App {
         CommandParserService commandParserService = new CommandParserService(filePath);
         List<AbstractCommand> commandList = commandParserService.getCommands();
 
-        AbstractRobot toyRobot = RobotFactory.getRobot(commandList.remove(0));
+        PlaceCommand validInitialPlacement = (PlaceCommand) commandList.remove(0);
+        LocationService locationService = new LocationService(validInitialPlacement);
+
+        AbstractRobot toyRobot = RobotFactory.getRobot(locationService);
 
         for (AbstractCommand command : commandList) {
             if (command instanceof PlaceCommand) {

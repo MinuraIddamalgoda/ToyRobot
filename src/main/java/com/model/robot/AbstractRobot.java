@@ -20,6 +20,10 @@ public class AbstractRobot {
         );
     }
 
+    public AbstractRobot(LocationService locationService) {
+        this.locationService = locationService;
+    }
+
     public String report() {
         return String.format("%d,%d,%s",
                 locationService.getCurrentX(),
