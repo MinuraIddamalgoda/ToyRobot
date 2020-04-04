@@ -2,7 +2,7 @@ package com.model.command;
 
 import com.model.robot.Direction;
 
-public class PlaceCommand extends Command {
+public class PlaceCommand extends AbstractCommand {
 
     private int x;
     private int y;
@@ -12,6 +12,18 @@ public class PlaceCommand extends Command {
         this.x = x;
         this.y = y;
         this.direction = direction;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     @Override

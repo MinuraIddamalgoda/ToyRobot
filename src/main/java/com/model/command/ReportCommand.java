@@ -1,6 +1,6 @@
 package com.model.command;
 
-public class ReportCommand extends Command {
+public class ReportCommand extends AbstractCommand {
 
     // Pull info from location service and return String
 

@@ -1,8 +1,11 @@
 package com.ToyRobot;
 
-import com.controller.io.CommandParserService;
-import com.controller.io.InputArgParserService;
-import com.model.command.Command;
+import com.controller.LocationService;
+import com.controller.io.parser.CommandParserService;
+import com.controller.io.parser.InputArgParserService;
+import com.model.command.*;
+import com.model.robot.AbstractRobot;
+import com.model.robot.RobotFactory;
 import org.apache.commons.cli.ParseException;
 
 import java.io.File;
@@ -23,13 +26,24 @@ public class App {
             System.exit(1);
         }
 
-        System.out.println(filePath);
-
         CommandParserService commandParserService = new CommandParserService(filePath);
-        List<Command> commandList = commandParserService.getCommands();
+        List<AbstractCommand> commandList = commandParserService.getCommands();
 
-        for (Command command: commandList) {
-            System.out.println(command.toString());
+        PlaceCommand validInitialPlacement = (PlaceCommand) commandList.remove(0);
+        LocationService locationService = new LocationService(validInitialPlacement);
+
+        AbstractRobot toyRobot = RobotFactory.getRobot(locationService);
+
+        for (AbstractCommand command : commandList) {
+            if (command instanceof PlaceCommand) {
+                toyRobot.performValidMove();
+            } else if (command instanceof MoveCommand) {
+                toyRobot.performValidMove();
+            } else if (command instanceof ReportCommand) {
+                System.out.println(toyRobot.report());
+            } else if (command instanceof ChangeDirectionCommand) {
+                toyRobot.changeDirection(command);
+            }
         }
     }
 }

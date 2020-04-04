@@ -1,22 +1,10 @@
 package com.model.robot;
 
-public class ToyRobot implements Robot {
-    Direction direction;
-    int x = -1;
-    int y = -1;
+import com.model.command.PlaceCommand;
 
-    @Override
-    public boolean place() {
-        return false;
-    }
+public class ToyRobot extends AbstractRobot {
 
-    @Override
-    public boolean move() {
-        return false;
-    }
-
-    @Override
-    public boolean report() {
-        return false;
+    public ToyRobot(PlaceCommand placeCommand) {
+        super(placeCommand);
     }
 }

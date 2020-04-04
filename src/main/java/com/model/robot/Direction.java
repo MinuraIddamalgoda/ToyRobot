@@ -6,8 +6,8 @@ public enum Direction {
     WEST,
     SOUTH;
 
-    public Direction changeLeft() {
-        switch (this) {
+    public static Direction getLeft(Direction comparison) {
+        switch (comparison) {
             case NORTH:
                 return WEST;
             case EAST:
@@ -21,8 +21,8 @@ public enum Direction {
         }
     }
 
-    public Direction changeRight() {
-        switch (this) {
+    public static Direction getRight(Direction comparison) {
+        switch (comparison) {
             case NORTH:
                 return EAST;
             case EAST:

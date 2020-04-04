@@ -1,5 +1,5 @@
 package com.model.command;
 
-public class ChangeDirectionCommand extends Command {
+public class ChangeDirectionCommand extends AbstractCommand {
 
 }

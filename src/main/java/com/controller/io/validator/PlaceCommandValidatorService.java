@@ -4,10 +4,9 @@ import com.model.command.PlaceCommand;
 import com.model.exception.PlacementException;
 import com.model.robot.Direction;
 
-public class PlaceCommandValidatorService {
+import static com.lib.BoardConfig.*;
 
-    private static final int BOARD_WIDTH = 5;
-    private static final int BOARD_HEIGHT = 5;
+public class PlaceCommandValidatorService {
 
     public static PlaceCommand getValidPlaceCommand(String command) throws PlacementException {
         String[] commandContents = command.split(" ");

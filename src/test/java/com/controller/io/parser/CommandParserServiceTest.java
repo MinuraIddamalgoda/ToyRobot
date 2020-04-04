@@ -1,6 +1,6 @@
-package com.controller.io;
+package com.controller.io.parser;
 
-import com.model.command.Command;
+import com.model.command.AbstractCommand;
 import com.model.command.MoveCommand;
 import com.model.command.PlaceCommand;
 import com.model.command.ReportCommand;
@@ -30,12 +30,12 @@ public class CommandParserServiceTest {
         File validFile = new File(testResourceDir.toAbsolutePath() + "/test1.trc");
         this.commandParserService = new CommandParserService(validFile);
 
-        List<Command> expectedOutput = new ArrayList<>(3);
+        List<AbstractCommand> expectedOutput = new ArrayList<>(3);
         expectedOutput.add(new PlaceCommand(0, 0, Direction.NORTH));
         expectedOutput.add(new MoveCommand());
         expectedOutput.add(new ReportCommand());
 
-        List<Command> output = commandParserService.getCommands();
+        List<AbstractCommand> output = commandParserService.getCommands();
 
         // FIXME:
         //  JUnit is saying they're different
@@ -49,11 +49,11 @@ public class CommandParserServiceTest {
         File invalidFileContents = new File(testResourceDir.toAbsolutePath() + "/test2.trc");
         this.commandParserService = new CommandParserService(invalidFileContents);
 
-        List<Command> expectedOutput = new ArrayList<>(3);
+        List<AbstractCommand> expectedOutput = new ArrayList<>(3);
         expectedOutput.add(new PlaceCommand(3, 3, Direction.NORTH));
         expectedOutput.add(new ReportCommand());
 
-        List<Command> output = commandParserService.getCommands();
+        List<AbstractCommand> output = commandParserService.getCommands();
 
         // FIXME:
         //  JUnit is saying they're different
