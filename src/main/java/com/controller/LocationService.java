@@ -4,11 +4,16 @@ import com.model.command.AbstractCommand;
 import com.model.command.ChangeLeftCommand;
 import com.model.robot.Direction;
 
+import static com.lib.BoardConfig.BOARD_HEIGHT;
+import static com.lib.BoardConfig.BOARD_WIDTH;
+
 public class LocationService {
 
     private int currentX;
     private int currentY;
     private Direction currentDirection;
+
+    private final int BOARD_LOWER_BOUND = 0;
 
     public LocationService(int currentX, int currentY, Direction currentDirection) {
         this.currentX = currentX;
@@ -27,6 +32,29 @@ public class LocationService {
     }
 
     public boolean performValidMove() {
+        switch (currentDirection) {
+            case NORTH:
+                if (currentY + 1 <= BOARD_HEIGHT) {
+                    currentY++;
+                    return true;
+                }
+            case EAST:
+                if (currentX + 1 <= BOARD_WIDTH) {
+                    currentX++;
+                    return true;
+                }
+            case WEST:
+                if (currentX - 1 >= BOARD_LOWER_BOUND) {
+                    currentX--;
+                    return true;
+                }
+            case SOUTH:
+                if (currentY - 1 >= BOARD_LOWER_BOUND) {
+                    currentY--;
+                    return true;
+                }
+        }
+
         return false;
     }
 
